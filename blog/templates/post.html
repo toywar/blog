@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block post %}
+
+<a href="/"><span class="glyphicon glyphicon-arrow-left"> Назад</span></a>
+<h4>{{ post.blogpost_date }}</h4>
+<h2>{{ post.blogpost_title }}</h2>
+<p>{{ post.blogpost_text }}</p>
+<hr/>
+<p><a href="/post/likeme/{{ post.id }}/"><span class="glyphicon glyphicon-heart">{{ post.blogpost_likes }}</span></a></p>
+<p>Comments:</p>
+<hr/>
+{% for comment in comments %}
+    <p>{{ comment.comments_text }}
+    <p>-----------</p>
+    </p>
+{% endfor %}
+
+    {% if username %}
+        Добавить комментарий:
+    <form action="/post/newcomment/{{ post.id }}/" method="post">
+    {% csrf_token %}
+        {{ form.comments_text }}
+        <br/>
+        <input type="submit" class="btn btn-info" value="Добавить комментарий">
+    </form>
+    {% endif %}
+
+{% endblock %}
