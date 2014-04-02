@@ -17,7 +17,7 @@
 {% endfor %}
 
     {% if username %}
-        Добавить комментарий:
+        !Добавить комментарий:
     <form action="/post/newcomment/{{ post.id }}/" method="post">
     {% csrf_token %}
         {{ form.comments_text }}
