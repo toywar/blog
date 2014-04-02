@@ -3,17 +3,18 @@ from django.shortcuts import render_to_response, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
 from django.http.response import HttpResponse, Http404
 from django.template.loader import get_template
 from django.template import Context
 from blog.models import BlogPost, Comments
 from blog.forms import CommentsForm
 
-def posts(request):
-    return render_to_response('posts.html', {'posts': BlogPost.objects.all(),
-                                             'username': auth.get_user(request).username
-                                            }
-                                )
+# def posts(request):
+#     return render_to_response('base.html', {'posts': BlogPost.objects.all(),
+#                                              'username': auth.get_user(request).username
+#                                             }
+#                                 )
 
 def post(request, post_id=1):
     comments_form = CommentsForm
@@ -33,7 +34,10 @@ def post(request, post_id=1):
     ##################################################################################################################
 
 def style(request):
-    return render_to_response('style.html')
+    return render_to_response('style.html', {'posts': BlogPost.objects.all(),
+                                             'username': auth.get_user(request).username
+                                            }
+                                )
 
 def likeme(request, post_id):
     try:
@@ -80,3 +84,20 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def register(request):
+    args = {}
+    args.update(csrf(request))
+    args['form'] = UserCreationForm
+    if request.POST:
+        newuser_form = UserCreationForm(request.POST)
+        if newuser_form.is_valid():
+            newuser_form.save()
+            newuser = auth.authenticate(username=newuser_form.cleaned_data['username'],
+                                        password=newuser_form.cleaned_data['password2']
+                                        )
+            auth.login(request, newuser)
+            return redirect('/')
+        else:
+            args['form'] = newuser_form
+    return render_to_response('register.html', args)
