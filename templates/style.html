@@ -2,24 +2,18 @@
 <html lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <title>toywar's blog</title>
+        <title>toywar's blog [Добро пожаловать]</title>
         <meta name="generator" content="Bootply" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-
         <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" type="text/css" rel="stylesheet">
         <!-- CSS code from Bootply.com editor -->
-
-        <style type="text/css">
-            .navbar-form input, .form-inline input {
-  width:auto;
+<style type="text/css">
+  .navbar-form input, .form-inline input {
+                width:auto;
 }
 
 body {
@@ -134,125 +128,90 @@ a,a:hover {
 
     <!-- HTML code from Bootply.com editor -->
 
-    <body  >
-
+    <body>
         <header class="navbar navbar-default navbar-fixed-top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand">toywar's blog</a>
-    </div>
-    <nav class="collapse navbar-collapse" role="navigation">
-      <ul class="nav navbar-right navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-
-          <ul class="dropdown-menu" style="padding:12px;">
-            <form class="form-inline">
-              <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button>
-                <input type="text" class="form-control pull-left" placeholder="Search">
-            </form>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<div id="masthead">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <h1>Уютный бложек
-          <p class="lead">о жизни, IT и прочих мелочах</p>
-        </h1>
-      </div>
-    </div>
-  </div><!-- /cont -->
-
-{% for post in posts %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-body">
-          <!--/stories-->
-
-		  <div class="row">
-            <br>
-                <div class="col-md-2 col-sm-3 text-center">
-
-                  <a class="story-img" href="#"><img src="//placehold.it/100" style="width:100px;height:100px" class="img-circle"></a>
-                </div>
-            <div class="col-md-10 col-sm-9">
-              <a href="/post/{{ post.id }}/"><h4>{{ post.blogpost_title }}</h4></a>
-               <div class="row">
-                <div class="col-xs-9">
-                   <p>{{ post.blogpost_text }}</p>
-                  <!--<p class="lead"><button class="btn btn-default">Read More</button></p>-->
-                  <!--<p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>-->
-                  <ul class="list-inline">
-                      <li>{{ post.blogpost_date }}</li>
-                      <li><a href="/post/likeme/{{ post.id }}/"><span class="glyphicon glyphicon-heart">{{ post.blogpost_likes }}</span></a> Likes</li>
-                      <!--<li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>-->
+            <div class="container">
+                   {% if username %}
+                            <a href="/logout/"><span class="label label-default">Выход ({{ username }})</span></a>
+                      {% else %}
+                            <a href="/login/"><span class="label label-default">Войти</span></a>
+                      {% endif %}
+                <div class="navbar-header">
+                    <a href="/" class="navbar-brand">toywar's blog</a>
                 </div>
             </div>
-          <hr>
+        </header>
 
-                <!--<a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>-->
-            </div>
+            <div id="masthead">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                             <h1>Уютный бложек <p class="lead">о жизни, IT и прочих мелочах</p></h1>
+                        </div>
+                    </div>
+                </div><!-- /cont -->
+
+        {% for post in posts %}
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel">
+                <div class="panel-body">
+                  <!--/stories-->
+                  <div class="row">
+                    <br>
+                        <div class="col-md-2 col-sm-3 text-center">
+                            <a class="story-img" href="#"><img src="//habrastorage.org/files/743/00d/2c9/74300d2c97b04bb4a6ed910a23c8c856.jpg" style="width:100px;height:100px" class="img-circle"></a>
+                        </div>
+                        <div class="col-md-10 col-sm-9">
+                            <a href="/post/{{ post.id }}/"><h4>{{ post.blogpost_title }}</h4></a>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <p>{{ post.blogpost_text }}</p>
+                                            <!--<p class="lead"><button class="btn btn-default">Read More</button></p>-->
+                                            <!--<p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>-->
+                                        <ul class="list-inline">
+                                        <li>{{ post.blogpost_date }}</li>
+                                        <li><span class="glyphicon glyphicon-heart"></span>{{ post.blogpost_likes }} Likes</li>
+                                            <!--<li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            <hr>
+                                            <!--<a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>-->
+                        </div>
+                  </div><!--row-->
+                </div><!--panel-body-->
+              </div><!--panel-->
+   	        </div><!--/col-12-->
           </div><!--row-->
-         </div>
-        </div>
-   	</div><!--/col-12-->
-
-</div>
-</div>
-{% endfor %}
-<hr>
-
-<hr>
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <ul class="list-inline">
-          <li><a href="https://twitter.com/toywar" target="_blank"><i class="icon-facebook icon-2x"></i></a></li>
-          <li><a href="https://www.facebook.com/roman.ekimov" target="_blank"><i class="icon-twitter icon-2x"></i></a></li>
-          <li><a href="https://plus.google.com/+RomanEkimov/posts" target="_blank"><i class="icon-google-plus icon-2x"></i></a></li>
-          <!--<li><i class="icon-pinterest icon-2x"></i></li>-->
-        </ul>
-
-      </div>
-      <div class="col-sm-6">
-          <p class="pull-right"><a href="http://www.toywar.ru">toywar.ru</a>, 2010-2014</p><br><br><br>
-          <p class="pull-center">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com">Bootply</a></p>
-      </div>
-    </div>
-  </div>
-</footer>
+        </div><!--container-->
+        {% endfor %}
+    <hr>
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-inline">
+                  <li><a href="https://twitter.com/toywar" target="_blank"><i class="icon-twitter icon-2x"></i></a></li>
+                  <li><a href="https://www.facebook.com/roman.ekimov" target="_blank"><i class="icon-facebook icon-2x"></i></a></li>
+                  <li><a href="https://plus.google.com/+RomanEkimov/posts" target="_blank"><i class="icon-google-plus icon-2x"></i></a></li>
+                  <!--<li><i class="icon-pinterest icon-2x"></i></li>-->
+                </ul>
+              </div>
+                  <p class="pull-right"><a href="http://www.toywar.ru">toywar.ru</a>, 2010-2014</p><br><br><br>
+                  <p class="pull-center">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com">Bootply</a></p>
+            </div>
+          </div>
+        </footer>
 
         <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
         <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-
-
-
-
-
         <!-- JavaScript jQuery code from Bootply.com editor -->
-
         <script type='text/javascript'>
-
         $(document).ready(function() {
-
-
-
-        });
-
+                        });
         </script>
-
+        </div><!--masthead-->
     </body>
 </html>

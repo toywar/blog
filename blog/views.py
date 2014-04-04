@@ -47,12 +47,12 @@ def likeme(request, post_id):
             post = BlogPost.objects.get(id = post_id)
             post.blogpost_likes += 1
             post.save()
-            response = redirect('/')
+            response = redirect('/post/%s/' % post_id)
             response.set_cookie(post_id, "likeme")
             return response
     except ObjectDoesNotExist:
         raise Http404
-    return redirect('/')
+    return redirect('/post/%s/' % post_id)
 
 def newcomment(request, post_id):
     if request.POST and ('justamoment' not in request.session):

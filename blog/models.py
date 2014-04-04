@@ -5,6 +5,7 @@ from django.contrib import admin
 class BlogPost(models.Model):
     class Meta():
         db_table = 'blogpost'
+        ordering = ('-blogpost_date', )
 
     blogpost_title = models.CharField(max_length=200, verbose_name=u'Заголовок')
     blogpost_text = models.TextField(verbose_name=u'Текст')
